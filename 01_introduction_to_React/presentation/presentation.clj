@@ -101,7 +101,12 @@
 
                    (image-h 200 "static-date-h1.png")
 
-                   [:p "Print the date into the heading"]]
+                   [:p "Print the date into the heading"]
+
+                   [:p "(Example code is "
+                    (github "codezoners-2/React/tree/master/01_introduction_to_React/assignments/static-date/HANDOUT"
+                            "here")
+                    "."]]
 
                   [:section
                    (heading "Exercise &frac12;")
@@ -156,4 +161,6 @@
                    (subheading "Implement a Date Refresh Button")
 
                    [:p "We've provided an outline of the button example "
-                    (github "xxxx" "here") ". Can you make it work?"]]]])
+                    (github "codezoners-2/React/tree/master/01_introduction_to_React/assignments/date-button/HANDOUT"
+                            "here")
+                    ". Can you make it work?"]]]])
