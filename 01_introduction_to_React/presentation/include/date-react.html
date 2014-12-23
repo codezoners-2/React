@@ -1,0 +1,14 @@
+<script src="http://fb.me/react-0.12.2.js"></script>
+<script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
+
+<!-- ... -->
+
+<div id="example">If you can see this, it's gone wrong!</div>
+
+<script type="text/jsx">
+  /** @jsx React.DOM */
+  React.renderComponent(
+      <div>{Date()}</div>,
+      document.getElementById('example')
+  );
+</script>

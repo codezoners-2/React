@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+
+                <!-- THEME now expected in head.html.
+                     <link rel="stylesheet" href="css/theme/default.css" id="theme">
+                  -->
+
+                <!-- Meta-content (title, meta, style). -->
+                <title>React</title><meta content="React" name="description" /><meta content="Nick Rothwell" name="author" /><link href="css/theme/sky.css" rel="stylesheet" type="text/css" />
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+                <!-- Pull in main content. -->
+                <div class="reveal"><div class="slides"><section><h3>The React Framework</h3><h4>Nick Rothwell</h4></section><section><h3>What is React?</h3><ul><li>A framework for dynamic user interfaces on the web</li><li>Features:</li><ul><li>Clean dataflow from code to page</li><li>Supports structured data directly in code using XML</li></ul></ul></section><section><h3>Background: Javascript and the DOM</h3><ul><li>The <i>DOM</i> (Document Object Model) is the browser's internal representation of a web page</li><li>Javascript code can alter the DOM, dynamically</li></ul></section><section><section><h3>Example 1: The Date</h3><p>This code will embed the date into a web page</p><pre><code class="html">&lt;div&gt;
+  &lt;script type="text/javascript"&gt;
+    document.write(Date());
+  &lt;/script&gt;
+&lt;/div&gt;</code></pre></section><section><img height="480" src="images/date-write.png" style="margin:10px; vertical-align:middle" /></section><section><h4>Issues</h4><p>The script runs once, when the page is loaded</p></section></section><section><section><h3>Example 2: The Date using React</h3><pre><code class="html">&lt;script src="http://fb.me/react-0.12.2.js"&gt;&lt;/script&gt;
+&lt;script src="http://fb.me/JSXTransformer-0.12.2.js"&gt;&lt;/script&gt;
+
+&lt;!-- ... --&gt;
+
+&lt;div id="example"&gt;If you can see this, it's gone wrong!&lt;/div&gt;
+
+&lt;script type="text/jsx"&gt;
+  /** @jsx React.DOM */
+  React.renderComponent(
+      &lt;div&gt;{Date()}&lt;/div&gt;,
+      document.getElementById('example')
+  );
+&lt;/script&gt;</code></pre></section><section><img height="480" src="images/date-react.png" style="margin:10px; vertical-align:middle" /></section><section><h4>Issues</h4><p>Page is still static</p></section></section><section><section><h3>React: The Essentials</h3></section><section><h4>React and JSX from a CDN</h4><pre><code class="html">&lt;script src="http://fb.me/react-0.12.2.js"&gt;&lt;/script&gt;
+&lt;script src="http://fb.me/JSXTransformer-0.12.2.js"&gt;&lt;/script&gt;</code></pre></section><section><h4>An anchor element to rewrite</h4><pre><code class="html">&lt;div id="example"&gt;If you can see this, it's gone wrong!&lt;/div&gt;</code></pre></section><section><h4>Some JSX Scripting</h4><pre><code class="html">&lt;script type="text/jsx"&gt;
+  /** @jsx React.DOM */
+  React.renderComponent(
+      &lt;div&gt;{Date()}&lt;/div&gt;,
+      document.getElementById('example')
+  );
+&lt;/script&gt;</code></pre></section><section><h4>Things to Note</h4><ul><li>The script type is <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">text/jsx</span></li><li>The special comment <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">/** @jsx React.DOM */</span> is needed</li><li>We can write a <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">&lt;div&gt;</span> directly in the code</li><li>We get back into Javascript with braces (<span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">{Date()}</span>)</li></ul></section><section><h4>(JSX is Rewritten into Javascript)</h4><img height="480" src="images/jsx-rewrite.png" style="margin:10px; vertical-align:middle" /></section></section><section><section><h3>Exercise 0</h3><h4>'Printing' the Date</h4><img height="200" src="images/static-date-h1.png" style="margin:10px; vertical-align:middle" /><p>Print the date into the heading</p></section><section><h3>Exercise &frac12;</h3><h4>(Trickier...)</h4><img height="100" src="images/static-date-title.png" style="margin:10px; vertical-align:middle" /><p>Print the date into the page title</p></section></section><section><section><h3>React Classes</h3><p>Build more complex interaction using React's classes</p><pre><code class="html">/** @jsx React.DOM */
+
+var MyDate = React.createClass({
+    getInitialState: function () {
+        return {date: Date()};
+    },
+
+    render: function () {
+        return &lt;div&gt;{this.state.date}&lt;/div&gt;
+    },
+});</code></pre><pre><code class="html">React.renderComponent(
+    &lt;MyDate /&gt;,
+    document.getElementById('target')
+);</code></pre></section><section><ul><li><span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">getInitialState</span>: declare an initial state as a record of named values</li><li><span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">render</span>: render the component using JS or JSX, referring to <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">this.state.XXX</span></li></ul></section><section><h4>External Javascript/JSX</h4><pre><code class="html">&lt;script src="js/button-date.js" type="text/jsx"&gt;&lt;/script&gt;</code></pre><p>You still need the <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">/** @jsx React.DOM */</span> in the JS file</p></section></section><section><section><h3>Adding Interaction</h3><h4>Refresh the date on button press</h4><img height="200" src="images/date-button.png" style="margin:10px; vertical-align:middle" /></section><section><p>Add a button to the <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">render</span> method</p><pre><code class="html">render: function () {
+    return &lt;div&gt;
+        &lt;div&gt;{this.state.date}&lt;/div&gt;
+        &lt;div&gt;&lt;button type="button" onClick={this.handleClick}&gt;Update!&lt;/button&gt;&lt;/div&gt;
+    &lt;/div&gt;;
+}</code></pre><p>Add a callback to update the object</p><pre><code class="html">handleClick: function () {
+    this.setState({date: Date()});
+}</code></pre><p>That's it!</p></section></section><section><section><h3>Exercise 1</h3><h4>Implement a Date Refresh Button</h4><p>We've provided an outline of the button example <a href="https://github.com/xxxx">here</a>. Can you make it work?</p></section></section></div></div>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

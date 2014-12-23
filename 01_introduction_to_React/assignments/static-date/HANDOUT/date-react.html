@@ -1,0 +1,24 @@
+<HTML>
+  <HEAD>
+    <!-- The core React library -->
+    <script src="http://fb.me/react-0.12.2.js"></script>
+    <!-- In-browser JSX transformer, remove when pre-compiling JSX. -->
+    <script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
+
+    <TITLE>Using React JS to write the date on load</TITLE>
+  </HEAD>
+
+  <BODY>
+    <h1>Using React JS to write the date on load</h1>
+
+    <div id="example">If you can see this, it's gone wrong!</div>
+
+    <script type="text/jsx">
+      /** @jsx React.DOM */
+      React.renderComponent(
+          <div>{Date()}</div>,
+          document.getElementById('example')
+      );
+    </script>
+  </BODY>
+</HTML>
