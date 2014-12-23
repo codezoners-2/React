@@ -106,7 +106,7 @@
                    [:p "(Example code is "
                     (github "codezoners-2/React/tree/master/01_introduction_to_React/assignments/static-date/HANDOUT"
                             "here")
-                    "."]]
+                    ".)"]]
 
                   [:section
                    (heading "Exercise &frac12;")
