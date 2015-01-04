@@ -7,5 +7,5 @@ var MyDate = React.createClass({
 
     render: function () {
         return <div>{this.state.date}</div>
-    },
+    }
 });

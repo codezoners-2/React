@@ -120,7 +120,7 @@
                   [:section
                    (heading "React Classes")
 
-                   [:p "Build more complex interaction using React's classes"]
+                   [:p "Build more complex interaction using React's class machinery"]
 
                    (include-code "react-classes-1.js")
                    (include-code "react-classes-1a.js")
@@ -163,4 +163,96 @@
                    [:p "We've provided an outline of the button example "
                     (github "codezoners-2/React/tree/master/01_introduction_to_React/assignments/date-button/HANDOUT"
                             "here")
-                    ". Can you make it work?"]]]])
+                    ". Can you make it work?"]]]
+
+                 [:section
+                  [:section
+                   (heading "Interval Timers")
+                   (subheading "Periodic 'Background' Tasks")
+
+                   [:ul
+                    [:li "We can set tasks (functions) to call periodically"]
+                    [:li "Tasks have to be set and cleared"]]]
+
+                  [:section
+                   (subheading "Create a function to call periodically")
+
+                   (include-code "tick.js")
+
+                   [:p "(The function can have any name; " (tt "tick") " seems an obvious choice.)"]]
+
+                  [:section
+                   (subheading "Set and clear interval timer")
+
+                   (include-code "mount-unmount.js")
+
+                   [:p "(The names " (tt "componentDidMount") " and "
+                    (tt "componentWillUnmount") " are specified by React.)"]]]
+
+                 [:section
+                  [:section
+                   (heading "Exercise 2")
+                   (subheading "Implement This Auto-Update")
+
+                   [:ul
+                    [:li "The HTML file doesn't need to change"]
+                    [:li "The React component doesn't need a button"]]]]
+
+                 [:section
+                  [:section
+                   (heading "Fun with Dates and Times")
+
+                   [:p "Javascript provides date and time methods"]
+                   [:p "(" (link "http://www.w3schools.com/js/js_date_methods.asp") ")"]]
+
+                  [:section
+                   (subheading "Danger Will Robinson!")
+
+                   [:p "JavaScript Hell"]
+
+                   [:ul
+                    [:li "The date function (" (tt "Date()") ") returns a string"]
+                    [:li "The date constructor (" (tt "new Date()") ") returns"
+                     " an object with date calculation methods"]]]
+
+                  [:section
+                   (subheading "Date Function")
+                   (include-code "date-fun.js")
+
+                   (subheading "Date Constructor")
+                   (include-code "date-ctr.js")
+
+                   [:p "More info: " (link "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date")]
+                   ]]
+
+                 [:section
+                  [:section
+                   (heading "Exercise 3")
+                   (subheading "Digital Clock")
+
+                   [:p "Use the Date object and methods to implement a digital clock"]
+
+                   (image-h 200 "clock-time.png")
+
+                   [:p "We're using Bootstrap for the grid layout and coloured labels."]
+
+                   [:p "Outline of the code "
+                    (github "codezoners-2/React/tree/master/01_introduction_to_React/assignments/clock/HANDOUT"
+                            "here")
+                    "."]]
+
+                  [:section
+                   (subheading "A Better Clock")
+
+                   [:p "Can you add day and date display?"]
+
+                   (image-h 200 "clock-time-date.png")
+
+                   [:p "(How can you generate the day and month names?)"]]]
+
+                 ;; Later topics/exercises:
+                 ;; Stuff with date calculations (age, time to Xmas, ...)
+                 ;; Altering content (grey-selector panels)
+                 ;; Dynamic content (adding buttons; maybe adding panels as well)
+                 ;; Design project: dynamic calendar
+                 ])

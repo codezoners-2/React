@@ -65,7 +65,7 @@
       &lt;div&gt;{Date()}&lt;/div&gt;,
       document.getElementById('example')
   );
-&lt;/script&gt;</code></pre></section><section><h4>Things to Note</h4><ul><li>The script type is <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">text/jsx</span></li><li>The special comment <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">/** @jsx React.DOM */</span> is needed</li><li>We can write a <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">&lt;div&gt;</span> directly in the code</li><li>We get back into Javascript with braces (<span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">{Date()}</span>)</li></ul></section><section><h4>(JSX is Rewritten into Javascript)</h4><img height="480" src="images/jsx-rewrite.png" style="margin:10px; vertical-align:middle" /></section></section><section><section><h3>Exercise 0</h3><h4>'Printing' the Date</h4><img height="200" src="images/static-date-h1.png" style="margin:10px; vertical-align:middle" /><p>Print the date into the heading</p><p>(Example code is <a href="https://github.com/codezoners-2/React/tree/master/01_introduction_to_React/assignments/static-date/HANDOUT">here</a>.)</p></section><section><h3>Exercise &frac12;</h3><h4>(Trickier...)</h4><img height="100" src="images/static-date-title.png" style="margin:10px; vertical-align:middle" /><p>Print the date into the page title</p></section></section><section><section><h3>React Classes</h3><p>Build more complex interaction using React's classes</p><pre><code class="html">/** @jsx React.DOM */
+&lt;/script&gt;</code></pre></section><section><h4>Things to Note</h4><ul><li>The script type is <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">text/jsx</span></li><li>The special comment <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">/** @jsx React.DOM */</span> is needed</li><li>We can write a <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">&lt;div&gt;</span> directly in the code</li><li>We get back into Javascript with braces (<span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">{Date()}</span>)</li></ul></section><section><h4>(JSX is Rewritten into Javascript)</h4><img height="480" src="images/jsx-rewrite.png" style="margin:10px; vertical-align:middle" /></section></section><section><section><h3>Exercise 0</h3><h4>'Printing' the Date</h4><img height="200" src="images/static-date-h1.png" style="margin:10px; vertical-align:middle" /><p>Print the date into the heading</p><p>(Example code is <a href="https://github.com/codezoners-2/React/tree/master/01_introduction_to_React/assignments/static-date/HANDOUT">here</a>.)</p></section><section><h3>Exercise &frac12;</h3><h4>(Trickier...)</h4><img height="100" src="images/static-date-title.png" style="margin:10px; vertical-align:middle" /><p>Print the date into the page title</p></section></section><section><section><h3>React Classes</h3><p>Build more complex interaction using React's class machinery</p><pre><code class="html">/** @jsx React.DOM */
 
 var MyDate = React.createClass({
     getInitialState: function () {
@@ -74,7 +74,7 @@ var MyDate = React.createClass({
 
     render: function () {
         return &lt;div&gt;{this.state.date}&lt;/div&gt;
-    },
+    }
 });</code></pre><pre><code class="html">React.renderComponent(
     &lt;MyDate /&gt;,
     document.getElementById('target')
@@ -85,7 +85,22 @@ var MyDate = React.createClass({
     &lt;/div&gt;;
 }</code></pre><p>Add a callback to update the object</p><pre><code class="html">handleClick: function () {
     this.setState({date: Date()});
-}</code></pre><p>That's it!</p></section></section><section><section><h3>Exercise 1</h3><h4>Implement a Date Refresh Button</h4><p>We've provided an outline of the button example <a href="https://github.com/codezoners-2/React/tree/master/01_introduction_to_React/assignments/date-button/HANDOUT">here</a>. Can you make it work?</p></section></section></div></div>
+}</code></pre><p>That's it!</p></section></section><section><section><h3>Exercise 1</h3><h4>Implement a Date Refresh Button</h4><p>We've provided an outline of the button example <a href="https://github.com/codezoners-2/React/tree/master/01_introduction_to_React/assignments/date-button/HANDOUT">here</a>. Can you make it work?</p></section></section><section><section><h3>Interval Timers</h3><h4>Periodic 'Background' Tasks</h4><ul><li>We can set tasks (functions) to call periodically</li><li>Tasks have to be set and cleared</li></ul></section><section><h4>Create a function to call periodically</h4><pre><code class="html">tick: function () {
+    this.setState({date: Date()});
+},</code></pre><p>(The function can have any name; <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">tick</span> seems an obvious choice.)</p></section><section><h4>Set and clear interval timer</h4><pre><code class="html">componentDidMount: function() {
+    this.interval = setInterval(this.tick, 1000);
+},
+
+componentWillUnmount: function() {
+    clearInterval(this.interval);
+},</code></pre><p>(The names <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">componentDidMount</span> and <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">componentWillUnmount</span> are specified by React.)</p></section></section><section><section><h3>Exercise 2</h3><h4>Implement This Auto-Update</h4><ul><li>The HTML file doesn't need to change</li><li>The React component doesn't need a button</li></ul></section></section><section><section><h3>Fun with Dates and Times</h3><p>Javascript provides date and time methods</p><p>(<a href="http://www.w3schools.com/js/js_date_methods.asp"><code>http://www.w3schools.com/js/js_date_methods.asp</code></a>)</p></section><section><h4>Danger Will Robinson!</h4><p>JavaScript Hell</p><ul><li>The date function (<span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">Date()</span>) returns a string</li><li>The date constructor (<span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">new Date()</span>) returns an object with date calculation methods</li></ul></section><section><h4>Date Function</h4><pre><code class="html">&gt; Date();
+'Sun Jan 04 2015 11:45:55 GMT+0000 (GMT)'</code></pre><h4>Date Constructor</h4><pre><code class="html">&gt; var d = new Date();
+&gt; d.toDateString();
+'Sun Jan 04 2015'
+&gt; d.getFullYear();
+2015
+&gt; d.getTime();
+1420372047327</code></pre><p>More info: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"><code>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date</code></a></p></section></section><section><section><h3>Exercise 3</h3><h4>Digital Clock</h4><p>Use the Date object and methods to implement a digital clock</p><img height="200" src="images/clock-time.png" style="margin:10px; vertical-align:middle" /><p>We're using Bootstrap for the grid layout and coloured labels.</p><p>Outline of the code <a href="https://github.com/codezoners-2/React/tree/master/01_introduction_to_React/assignments/clock/HANDOUT">here</a>.</p></section><section><h4>A Better Clock</h4><p>Can you add day and date display?</p><img height="200" src="images/clock-time-date.png" style="margin:10px; vertical-align:middle" /><p>(How can you generate the day and month names?)</p></section></section></div></div>
 
 		<script>
 
