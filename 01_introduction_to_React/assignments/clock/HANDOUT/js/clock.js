@@ -1,8 +1,8 @@
 /** @jsx React.DOM */
 
-var MyDate = React.createClass({
+var Clock = React.createClass({
     getInitialState: function () {
-        return {x: 0};
+        return { };
     },
 
     render: function () {
@@ -23,6 +23,6 @@ var MyDate = React.createClass({
 });
 
 React.renderComponent(
-    <MyDate />,
+    <Clock />,
     document.getElementById('container')
 );
