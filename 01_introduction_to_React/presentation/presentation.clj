@@ -250,6 +250,73 @@
 
                    [:p "(How can you generate the day and month names?)"]]]
 
+                 [:section
+                  [:section
+                   (heading "Interaction: Stopwatch")
+
+                   [:p "A stopwatch requires interaction with both the time library and the user."]
+
+                   (image-h 250 "timer-basic.png")]
+
+                  [:section
+                   (subheading "Design Issues")
+
+                   [:ul
+                    [:li "The application is " [:i "stateful"] ": it can be either 'running' or 'stopped'"]
+                    [:li "The refresh rate is faster (10 refreshes per second)"]]
+                   ]
+                  ]
+
+                 [:section
+                  [:section
+                   (heading "Exercise 4")
+                   (subheading "Timer (Part 1)")
+
+                   [:p "Implement the timer!"]
+
+                   [:p "(We've provided outline code: "
+                    (github "codezoners-2/React/tree/master/01_introduction_to_React/assignments/timer/HANDOUT"
+                            "here")
+                    ".)"]]
+
+                  [:section
+                   (subheading "Things to Think About")
+
+                   [:ul
+                    [:li "How will you calculate elapsed time in milliseconds?"]
+                    [:li "What state does the " (tt "Timer") " class need?"]
+                    [:li "What should " (tt "tick") " do? (The timer might be running, or it might be stopped)"]]]
+
+                  ]
+
+                 [:section
+                  [:section
+                   (heading "Exercise 5")
+                   (subheading "Pimping the Timer")
+
+                   (image-h 250 "timer-glyphs.png")]
+
+                  [:section
+                   (subheading "Improvements")
+
+                   [:ul
+                    [:li "The time is shown in hours, minutes, seconds, tenths ("
+                     (tt "HH:MM:SS.T") ")"]
+                    [:li "We have a single button with play and stop icon (using Bootstrap glyphs)"]
+                    [:li "There's an 'egg timer' progress bar which is three minutes 'long' (again using Bootstrap)"]]]
+
+                  [:section
+                   (subheading "Some Help")
+
+                   [:ul
+                    [:li "Outline code is "
+                     (github "codezoners-2/React/tree/master/01_introduction_to_React/assignments/timer/HANDOUT"
+                             "here")]
+                    [:li "Bootstrap glyphs: " (link "http://getbootstrap.com/components/#glyphicons")]
+                    [:li "Bootstrap progress bars: " (link "http://getbootstrap.com/components/#progress")]
+                    [:li "Elapsed time formatting: "
+                     (link "http://stackoverflow.com/questions/6312993/javascript-seconds-to-time-string-with-format-hhmmss")]]]]
+
                  ;; Later topics/exercises:
                  ;; Stuff with date calculations (age, time to Xmas, ...)
                  ;; Altering content (grey-selector panels)
