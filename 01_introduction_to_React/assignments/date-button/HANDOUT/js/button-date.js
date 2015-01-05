@@ -2,7 +2,7 @@
 
 var MyDate = React.createClass({
     getInitialState: function () {
-        return {date: new Date()};
+        return {date: Date()};
     },
 
     render: function () {
