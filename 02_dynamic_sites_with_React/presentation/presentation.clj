@@ -142,5 +142,46 @@
                    [:ul
                     [:li "Can you implement a " (tt "clear") " button to reset the display?"]
                     [:li "How about a " (tt "pop") " button to remove the last box added?"]
-                    [:li "(Neither button should appear when there are no boxes shown)"]]]
-                  ]])
+                    [:li "(Neither button should appear when there are no boxes shown)"]]]]
+
+                 [:section
+                  [:section
+                   (heading "Lap Timer")
+
+                   [:p "The lap timer is a glorified version of the stacked boxes"]
+
+                   [:ul
+                    [:li "Each 'box' is a label with a captured lap time"]
+                    [:li "The timer component has a button to add captured lap times to a list"]]]]
+
+                 [:section
+                  [:section
+                   (heading "Exercise 3")
+                   (subheading "Lap Timer")
+
+                   (image-h 300 "lap-timer.png")]
+
+                  [:section
+                   (subheading
+                    "Provided "
+                    (github "codezoners-2/React/tree/master/02_dynamic_sites_with_React/assignments/lap-timer/HANDOUT"
+                            "here")
+                    ":")
+
+                   [:ul [:li "A working timer"]]]
+
+                  [:section
+                   (subheading "To do:")
+
+                   [:ul
+                    [:li "Finish implementing the " (tt "<Lap>") " component"]
+                    [:li "Add code to " (tt "<Timer>") " to add new laps"]
+                    [:li "Render the laps into the display"]]]
+
+                  [:section
+                   (subheading "Bonus Points")
+
+                   [:ul
+                    [:li "Include a 'time since last lap' figure in each lap time component"]
+                    [:li "(Harder) add a button to each lap time which removes that time from the page"]
+                    [:li "(If you've implemented lap difference times, those will change too!)"]]]]])
