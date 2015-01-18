@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+
+                <!-- THEME now expected in head.html.
+                     <link rel="stylesheet" href="css/theme/default.css" id="theme">
+                  -->
+
+                <!-- Meta-content (title, meta, style). -->
+                <title>React</title><meta content="React" name="description" /><meta content="Nick Rothwell" name="author" /><link href="css/theme/sky.css" rel="stylesheet" type="text/css" />
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+                <!-- Pull in main content. -->
+                <div class="reveal"><div class="slides"><section><h3>Grids and Calculation with React</h3><h4>Nick Rothwell</h4><img height="300" src="images/calculator.png" style="margin:10px; vertical-align:middle" /></section><section><section><h3>Components and Subcomponents</h3><h4>Static Children</h4><pre><code class="html">var MyBoxes = React.createClass({
+    render: function() {
+        return &lt;div&gt;{this.props.children}&lt;/div&gt;;
+    }
+});</code></pre><pre><code class="html">&lt;MyBoxes&gt;
+    &lt;MyBox brightness="0" /&gt;
+    &lt;MyBox brightness="128" /&gt;
+    &lt;MyBox brightness="255" /&gt;
+&lt;/MyBoxes&gt;</code></pre></section><section><h4>Dynamic Children</h4><pre><code class="html">getInitialState: function() {
+    return {contents: [ ]};
+}</code></pre><pre><code class="html">addBox: function() {
+    var c = this.state.contents;
+    c.push(&lt;MyBox /* .... */ /&gt;);
+    this.setState({contents: c});
+}</code></pre><pre><code class="html">render: function() {
+    return &lt;div&gt;{this.state.contents}&lt;/div&gt;;
+}</code></pre></section><section><h4>Static Generated Children</h4><img height="480" src="images/grid-225.png" style="margin:10px; vertical-align:middle" /></section></section><section><section><h4>Solution (1970s Style)</h4><pre><code class="html">var Grid = React.createClass({
+    render: function() {
+        cells = [];
+        for (var i = 1; i &lt;= 20; i++) {
+            cells.push(&lt;MyButton key={i} title={i} /&gt;);
+        }
+
+        return &lt;div&gt;{cells}&lt;/div&gt;;
+    }
+});</code></pre><ul><li>Rather verbose</li><li>Side-effecting (mutating)</li></ul></section><section><h4>Solution (2010s Style)</h4><pre><code class="html">var Grid = React.createClass({
+    render: function() {
+        var makeButton = function (i) {
+            return &lt;MyButton key={i} title={i} /&gt;;
+        };
+
+        return &lt;div&gt;{_.range(1, 10).map(makeButton)}&lt;/div&gt;;
+    }
+});</code></pre><ul><li>Succinct</li><li>Declarative</li></ul></section></section><section><section><h3>Functional Programming</h3><ul><li>Using <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">underscore.js</span> (<a href="http://underscorejs.org/"><code>http://underscorejs.org/</code></a>)</li><li>Using Javascript functionally (<span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">a.map(...)</span>)</li></ul></section><section><ul><li><span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">_.range(...)</span>: generate an array containing a range of numbers</li><li><span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">a.map(...)</span>: map a function across an array (makes a new array)</li></ul></section><section><pre><code class="html">_.range(10)
+    =&gt; [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</code></pre><pre><code class="html">_.range(10).map(function (x) { return x * x; })
+    =&gt; [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</code></pre></section><section><h4>Bonus: filtering</h4><ul><li><span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">a.filter(...)</span>: filter an array using a function (makes a new array)</li></ul><pre><code class="html">_.range(10).filter(function (x) { return x &gt; 4; })
+    =&gt; [5, 6, 7, 8, 9]</code></pre></section><section><p>We're using <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">map</span> to build an array of React components</p><pre><code class="html">var Grid = React.createClass({
+    render: function() {
+        var makeButton = function (i) {
+            return &lt;MyButton key={i} title={i} /&gt;;
+        };
+
+        return &lt;div&gt;{_.range(1, 10).map(makeButton)}&lt;/div&gt;;
+    }
+});</code></pre></section></section><section><section><h3>Exercise 1</h3><h4>Square Grid</h4><p>We've provided the grid to draw a row of buttons.</p><p>Can you make it draw a grid of buttons?</p></section><section><img height="480" src="images/grid-225.png" style="margin:10px; vertical-align:middle" /><p>(Don't worry about what the buttons do - yet.)</p><p>(Source code <a href="https://github.com/codezoners-2/React/tree/master/03_grids_and_calculation_with_React/assignments/square-grid/HANDOUT">here</a>.)</p></section></section><section><section><h3>React Trickiness</h3><p>How can an inner component affect an outer one?</p><p>(For example: buttons which can remove themselves from a collection.)</p></section><section><h4>Part 1</h4><p>The button needs an <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">onClick</span> handler</p><pre><code class="html">var MyButton = React.createClass({
+    render: function () {
+        return &lt;span&gt;&lt;button onClick={this.props.onClick} type="button"&gt;{this.props.title}&lt;/button&gt;&lt;/span&gt;;
+    }
+});</code></pre></section><section><h4>Part 2</h4><p>When we make a button, we have to create the <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">onClick</span> function for it</p><pre><code class="html">var Grid = React.createClass({
+    handleClick: function (d) {
+        alert(d);
+    },
+
+    render: function() {
+        var makeButton = function (i) {
+            var boundClick = this.handleClick.bind(this, i);
+            return &lt;MyButton onClick={boundClick} key={i} title={i} /&gt;;
+        };
+
+        return &lt;div&gt;{_.range(1, 10).map(makeButton, this)}&lt;/div&gt;;
+    }
+});</code></pre></section><section><h4>Tricky... But Done</h4><p>That's a complete example.</p><p>(But it's contrived: we don't need <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">handleClick</span> in the grid.)</p><p>(Complete code <a href="https://github.com/codezoners-2/React/tree/master/03_grids_and_calculation_with_React/assignments/generated-grid/HANDOUT">here</a>.)</p></section></section><section><section><h3>Exercise 2</h3><h4>Self-Removing Buttons</h4><p>Modify this example so that the buttons remove themselves from the row.</p><p>Method:</p><ul><li>The row of buttons can't be built inside <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">render</span>; it must be part of the <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">state</span> of the grid</li><li>The <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">handleClick</span> function must remove the button from the state (using <span style="font-family:monospace; background-color:rgba(255, 255, 255, 0.5)">setState</span>, as in the earlier exercises)</li></ul></section></section></div></div>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
