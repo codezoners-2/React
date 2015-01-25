@@ -102,6 +102,97 @@
 
                  [:section
                   [:section
+                   (heading "Functions for Filter and Map")
+
+                   [:p "Define functions in declarations using " (tt "function") " keyword"]
+
+                   (include-code "square-fn.js")
+
+                   [:p "(Could be useful for " (tt "map") ".)"]
+
+                   (include-code "odd-fn.js")
+
+                   [:p "(Could be useful for " (tt "filter") ".)"]
+
+                   [:p "Then:"]
+
+                   (code "_.range(10).filter(oddNumber).map(square)")]
+
+                  [:section
+                   (subheading "Neat but Ugly: Function Expressions")
+
+                   (code "_.range(10).map(function (x) { return x * x; })")
+
+                   [:p "The part " (tt "function (x) { return x * x; }")
+                    " is the function"]]]
+
+                 [:section
+                  [:section
+                   (heading "Functions to generate React")
+
+                   [:p "Functions can generate React components:"]
+
+                   (include-code "fn-react.js")
+
+                   [:p "These functions can be used in " (tt "map") ":"]
+
+                   (code "_.range(10).map(makeButton)")]
+                  ]
+
+                 [:section
+                  [:section
+                   (heading "Examples")
+
+                   (code "_.range(16).map(makeButton)")
+                   (image-h 300 "sixteenButtons.png")
+
+                   ]
+
+                  [:section
+                   (include-code "makeRed.js")
+                   (code "_.range(16).map(makeRed)")
+
+                   (image-h 300 "sixteenReds.png")
+                   ]
+
+                  [:section
+                   (include-code "sinMono.js")
+                   (code "_.range(1000).map(sinMono)")
+
+                   (image-h 200 "sinsMono.png")
+                   ]
+
+                  ]
+
+                 [:section
+                  [:section
+                   (heading "Exercise 1&frac12;")
+
+                   [:p "Given these:"]
+
+                   (image-h 300 "fns-handout.png")
+
+                   [:p "("
+                    (github "codezoners-2/React/tree/master/03_grids_and_calculation_with_React/assignments/functions/HANDOUT"
+                            "download")
+                    ")"]
+                   ]
+
+                  [:section
+                   [:p "Can you make these?"]
+
+                   (image  "worked-1.png")
+
+                   ]
+
+                  [:section
+                   [:p "How about these?"]
+
+                   (image "worked-2.png")]
+                  ]
+
+                 [:section
+                  [:section
                    (heading "React Trickiness")
 
                    [:p "How can an inner component affect an outer one?"]
