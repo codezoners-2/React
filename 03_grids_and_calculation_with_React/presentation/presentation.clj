@@ -157,12 +157,10 @@
 
                   [:section
                    (include-code "sinMono.js")
-                   (code "_.range(1000).map(sinMono)")
+                   (code "_.range(1000).map(sinMonoFn)")
 
                    (image-h 200 "sinsMono.png")
-                   ]
-
-                  ]
+                   ]]
 
                  [:section
                   [:section
@@ -190,6 +188,15 @@
 
                    (image "worked-2.png")]
                   ]
+
+                 ;; Thoughts:
+
+                 ;; Illustrate sin(): range() in node. Perhaps show image
+                 ;; http://en.wikipedia.org/wiki/Trigonometry
+
+                 ;; Ways of changing rate: multiply in mapped fn (as we've done)
+                 ;; vs. filter (Kwesi) vs. _.range() with step, vs. map to
+                 ;; multiply. Maybe look at bind().
 
                  [:section
                   [:section
